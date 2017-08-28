@@ -1,0 +1,13 @@
+description = "Apereo CAS SAML SP Integrations"
+dependencies {
+    implementation project(":core:cas-server-core-services")
+    implementation project(":core:cas-server-core-authentication")
+    implementation project(":support:cas-server-support-saml-idp")
+    implementation project(":support:cas-server-support-saml-core")
+    implementation project(":support:cas-server-support-saml-idp-core")
+    implementation libraries.casclient
+    implementation libraries.shibidp
+
+    runtimeOnly libraries.groovy
+    
+}

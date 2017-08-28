@@ -1,0 +1,26 @@
+description = "Apereo CAS Web Application Configuration"
+dependencies {
+    implementation libraries.groovy
+    implementation libraries.pac4j
+    implementation libraries.metrics
+    implementation libraries.cassecurityfilter
+
+    implementation project(":core:cas-server-core-webflow")
+    implementation project(":core:cas-server-core-web")
+    implementation project(":api:cas-server-core-api-webflow")
+    implementation project(":core:cas-server-core-authentication")
+    implementation project(":support:cas-server-support-actions")
+
+    testImplementation project(":support:cas-server-support-person-directory")
+    testImplementation project(":support:cas-server-support-themes")
+    testImplementation project(":core:cas-server-core")
+    testImplementation project(":core:cas-server-core-audit")
+    testImplementation project(":core:cas-server-core-logging")
+    testImplementation project(":core:cas-server-core-logout")
+    testImplementation project(":core:cas-server-core-validation")
+    testImplementation project(":core:cas-server-core")
+    testImplementation project(":support:cas-server-support-cookie")
+    testImplementation project(":core:cas-server-core-webflow")
+    
+    compileOnly libraries.bouncycastle
+}

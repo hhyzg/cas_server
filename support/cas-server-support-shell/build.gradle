@@ -1,0 +1,45 @@
+apply plugin: "application"
+apply plugin: "org.springframework.boot"
+
+def MAIN_CLASS = "org.apereo.cas.CasCommandLineShellApplication"
+
+mainClassName = MAIN_CLASS
+description = "Apereo CAS Shell Support via Spring"
+
+dependencies {
+    implementation project(":core:cas-server-core-configuration")
+    implementation project(":core:cas-server-core-util")
+    implementation project(":core:cas-server-core-services-api")
+    implementation project(":api:cas-server-core-api-services")
+    implementation project(":support:cas-server-support-oauth-services")
+    implementation project(":support:cas-server-support-oidc-services")
+    implementation project(":support:cas-server-support-saml-idp-core")
+    implementation project(":support:cas-server-support-ws-idp-api")
+    implementation project(":core:cas-server-core-configuration-metadata-repository")
+    implementation libraries.springbootconfigmetadata
+}
+
+springBoot {
+    mainClass = MAIN_CLASS
+}
+
+bootRepackage {
+    mainClass = MAIN_CLASS
+    enabled = !rootProject.publishReleases
+}
+
+bootRun {
+    systemProperties = System.properties
+    def list = []
+    if (rootProject.enableRemoteDebugging) {
+        list.add("-Xrunjdwp:transport=dt_socket,address=5000,server=y,suspend=n")
+    }
+    jvmArgs = list
+}
+
+run {
+    def execArgs = System.getProperty('args')
+    if (execArgs != null) {
+        args execArgs.split()
+    }
+}
